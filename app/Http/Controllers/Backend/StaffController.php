@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Staff;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,14 +17,14 @@ class StaffController extends Controller
      */
     public function index(): JsonResponse
     {
-        $item = User::get();
+        $item = Staff::with('district')->get();
         return custom_response($item);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -35,33 +35,35 @@ class StaffController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param Staff $staff
+     * @return JsonResponse
      */
-    public function show(User $user)
+    public function show(Staff $staff): JsonResponse
     {
-        //
+        return custom_response($staff);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param Request $request
+     * @param Staff $staff
+     * @return JsonResponse
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Staff $staff): JsonResponse
     {
-        //
+        $validated = $request->validate(['name' => 'required']);
+        $staff->update($validated);
+        return custom_response(message: '10103');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Staff  $user
      * @return Response
      */
-    public function destroy(User $user)
+    public function destroy(Staff $user)
     {
         //
     }

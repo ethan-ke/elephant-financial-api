@@ -41,9 +41,9 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+        'backend' => [
+            'driver' => 'passport',
+            'provider' => 'backend-users',
             'hash' => false,
         ],
     ],
@@ -68,13 +68,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Staff::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'backend-users' => [
+             'driver' => 'eloquent',
+             'model' => App\Models\BackendUser::class,
+         ],
     ],
 
     /*

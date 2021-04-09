@@ -23,45 +23,51 @@ class DistrictController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $validated = $request->validate(['name' => 'required']);
+        District::create($validated);
+        return custom_response(message: 10101);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\District  $district
-     * @return \Illuminate\Http\Response
+     * @param District $district
+     * @return JsonResponse
      */
-    public function show(District $district)
+    public function show(District $district): JsonResponse
     {
-        //
+        return custom_response($district);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\District  $district
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param District $district
+     * @return JsonResponse
      */
-    public function update(Request $request, District $district)
+    public function update(Request $request, District $district): JsonResponse
     {
-        //
+        $validated = $request->validate(['name' => 'required']);
+        $district->update($validated);
+        return custom_response(message: '10103');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\District  $district
-     * @return \Illuminate\Http\Response
+     * @param District $district
+     * @return JsonResponse
+     * @throws \Exception
      */
-    public function destroy(District $district)
+    public function destroy(District $district): JsonResponse
     {
-        //
+        $district->delete();
+        return custom_response(status_code: 204);
     }
 }
