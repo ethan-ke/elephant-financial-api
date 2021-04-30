@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Performance
@@ -29,7 +30,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Performance whereUserId($value)
  * @mixin \Eloquent
  */
-class Performance extends Model
+class Performance extends BaseModel
 {
-    use HasFactory;
+
+    public const STATUS_PENDING = 1;
+    public const STATUS_START = 2;
+    public const PENDING = 0.7;
+    public const START = 0.3;
+
+    /**
+     * @return BelongsTo
+     */
+    public function staff(): BelongsTo
+    {
+        return $this->belongsTo(Staff::class);
+    }
 }

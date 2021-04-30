@@ -16,17 +16,19 @@ class PerformanceSeeder extends Seeder
     {
         Performance::insert([
             [
-                'user_id'         => 1,
+                'staff_id'        => 1,
                 'price'           => 5480,
                 'number'          => 17,
                 'commission_rate' => 0.01,
+                'pending'         => 0.7,
                 'status'          => 1,
             ],
             [
-                'user_id'         => 1,
+                'staff_id'        => 1,
                 'price'           => 5480,
                 'number'          => 10,
                 'commission_rate' => 0.03,
+                'pending'         => 0.7,
                 'status'          => 1,
             ],
         ]);

@@ -15,10 +15,13 @@ class CreatePerformancesTable extends Migration
     {
         Schema::create('performances', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
+            $table->bigInteger('staff_id');
             $table->decimal('price');
             $table->integer('number');
             $table->decimal('commission_rate',2);
+            $table->decimal('pending',2)->nullable();
+            $table->decimal('start',2)->nullable();
+            $table->string('remark')->nullable();
             $table->tinyInteger('status')->comment('1: 未开班, 2: 已开班');
             $table->timestamps();
         });

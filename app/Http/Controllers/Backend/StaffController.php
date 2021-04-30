@@ -25,12 +25,18 @@ class StaffController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'district_id' => 'required',
+        ]);
+        Staff::create($validated);
+        return custom_response(message: 10101);
     }
+
 
     /**
      * Display the specified resource.
@@ -60,11 +66,13 @@ class StaffController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Staff  $user
-     * @return Response
+     * @param Staff $staff
+     * @return JsonResponse
+     * @throws \Exception
      */
-    public function destroy(Staff $user)
+    public function destroy(Staff $staff): JsonResponse
     {
-        //
+        $staff->delete();
+        return custom_response(status_code: 204);
     }
 }

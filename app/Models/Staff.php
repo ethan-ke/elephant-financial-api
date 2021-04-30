@@ -37,6 +37,7 @@ class Staff extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'district_id',
     ];
 
     /**

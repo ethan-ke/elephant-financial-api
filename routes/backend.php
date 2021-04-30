@@ -20,10 +20,9 @@ Route::delete('authorizations/current', [AuthorizationsController::class, 'destr
 Route::middleware('auth:backend')->group(function () {
 //    Route::resource('users', BackendUser::class);
     Route::get('user', [BackendUsersController::class, 'me']);
-
-
     Route::resource('staff', StaffController::class);
     Route::resource('district', DistrictController::class);
     Route::resource('performance', PerformanceController::class);
+    Route::get('export', [PerformanceController::class, 'export']);
 
 });
