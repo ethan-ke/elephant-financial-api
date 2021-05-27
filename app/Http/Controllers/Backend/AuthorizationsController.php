@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Laravel\Passport\Http\Controllers\AccessTokenController;
@@ -33,7 +32,7 @@ class AuthorizationsController extends AccessTokenController
      */
     public function destroy(): JsonResponse
     {
-        Auth::logout();
+        auth('backend')->user()->token()->revoke();
         return custom_response(status_code: 204);
     }
 }

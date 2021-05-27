@@ -18,7 +18,7 @@ class CreatePerformancesTable extends Migration
             $table->bigInteger('staff_id');
             $table->decimal('price');
             $table->integer('number');
-            $table->decimal('commission_rate',2);
+            $table->decimal('commission_rate', 3, 3);
             $table->decimal('pending',2)->nullable();
             $table->decimal('start',2)->nullable();
             $table->string('remark')->nullable();

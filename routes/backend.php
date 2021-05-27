@@ -12,9 +12,6 @@ Route::post('authorizations', [AuthorizationsController::class, 'store'])
 // 刷新token
 Route::put('authorizations/current', [AuthorizationsController::class, 'update'])
     ->name('authorizations.update');
-// 删除token
-Route::delete('authorizations/current', [AuthorizationsController::class, 'destroy'])
-    ->name('authorizations.destroy');
 
 // Authenticated
 Route::middleware('auth:backend')->group(function () {
@@ -24,5 +21,6 @@ Route::middleware('auth:backend')->group(function () {
     Route::resource('district', DistrictController::class);
     Route::resource('performance', PerformanceController::class);
     Route::get('export', [PerformanceController::class, 'export']);
-
+    Route::delete('authorizations/current', [AuthorizationsController::class, 'destroy'])
+        ->name('authorizations.destroy');
 });

@@ -67,11 +67,14 @@ class PerformanceController extends MainController
     public function update(PerformanceRequest $request, Performance $performance): JsonResponse
     {
         $validated = $request->validateD();
+
         switch ((int) $validated['status']) {
             case Performance::STATUS_PENDING:
                 $validated['pending']  = Performance::PENDING;
+                $validated['start']  = null;
                 break;
             case Performance::STATUS_START:
+                $validated['pending'] = null;
                 $validated['start']  = Performance::START;
                 break;
         }
